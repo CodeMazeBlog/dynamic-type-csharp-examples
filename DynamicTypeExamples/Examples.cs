@@ -1,6 +1,5 @@
 ﻿using DynamicTypeExamples.Factories;
 using DynamicTypeExamples.Models;
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
 using System.Reflection;
@@ -11,37 +10,21 @@ namespace DynamicTypeExamples
     {
         public static void ExampleDynamicWithException()
         {
-            try
-            {
-                dynamic testVariable = 5;
-                Console.WriteLine(testVariable.GetType());
+            dynamic testVariable = 5;
+            Console.WriteLine(testVariable.GetType());
 
-                testVariable = "Hello World";
-                Console.WriteLine(testVariable.GetType());
-                Console.WriteLine(testVariable++);
-            }
-            catch (RuntimeBinderException ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
+            testVariable = "Hello World";
+            Console.WriteLine(testVariable.GetType());
+            Console.WriteLine(testVariable++);
         }
 
         public static void ExampleMissingMethodDefinitionException()
         {
-            try
-            {
-                dynamic logger = LoggerFactory.GetLogger();
-                logger.LogInfo("Hi");
-                logger.LogWarning("You are about to enter a time warp");
-                logger.LogError("System is malfunctioning");
-                logger.LogTrace("Communication lost");
-            }
-            catch (RuntimeBinderException ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
+            dynamic logger = LoggerFactory.GetLogger();
+            logger.LogInfo("Hi");
+            logger.LogWarning("You are about to enter a time warp");
+            logger.LogError("System is malfunctioning");
+            logger.LogTrace("Communication lost");
         }
 
         public static void ExampleReflection()
@@ -66,9 +49,9 @@ namespace DynamicTypeExamples
 
         public static void ExamplePrintCount(ICollection collection)
         {
-            dynamic d = collection;
+            dynamic dynamicCollection = collection;
             Console.WriteLine("Static typing: {0}", collection.Count);
-            Console.WriteLine("Dynamic typing: {0}", d.Count);
+            Console.WriteLine("Dynamic typing: {0}", dynamicCollection.Count);
         }
 
         private static EmployeeFactory GetEmployeeFactory()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using System;
 
 namespace DynamicTypeExamples
 {
@@ -15,7 +16,7 @@ namespace DynamicTypeExamples
                 Examples.ExampleDynamic();
                 Examples.ExamplePrintCount(new int[20]);
             }
-            catch (Exception ex)
+            catch (RuntimeBinderException ex)
             {
                 Console.WriteLine(ex);
             }
